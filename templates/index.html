@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center">
+
+    <h1>Rancher Hands-on Employee App</h1>
+
+    <p class="lead">
+        Flask + MySQL + Docker + Kubernetes + Rancher
+    </p>
+
+    {% if session.get("emp_id") %}
+
+        <a
+            href="{{ url_for('employees') }}"
+            class="btn btn-primary">
+            Manage Employees
+        </a>
+
+    {% else %}
+
+        <a
+            href="{{ url_for('login') }}"
+            class="btn btn-primary">
+            Login
+        </a>
+
+        <a
+            href="{{ url_for('register') }}"
+            class="btn btn-success">
+            Register
+        </a>
+
+    {% endif %}
+
+</div>
+
+
+<hr class="my-5">
+
+
+<h3>Employees</h3>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for employee in employees %}
+
+        <tr>
+
+            <td>{{ employee.emp_id }}</td>
+
+            <td>{{ employee.fullname }}</td>
+
+            <td>{{ employee.email }}</td>
+
+            <td>{{ employee.created_at }}</td>
+
+            <td>{{ employee.updated_at }}</td>
+
+        </tr>
+
+        {% else %}
+
+        <tr>
+
+            <td colspan="5"
+                class="text-center">
+
+                No employees found.
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

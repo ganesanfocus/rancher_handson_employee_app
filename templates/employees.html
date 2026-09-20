@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Employee Management</h2>
+
+
+<div class="card mt-4">
+
+    <div class="card-header">
+        Create Employee
+    </div>
+
+    <div class="card-body">
+
+        <form
+            method="POST"
+            action="{{ url_for('create_employee') }}">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <input
+                        type="text"
+                        name="fullname"
+                        class="form-control"
+                        placeholder="Full Name"
+                        required>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Email"
+                        required>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Password"
+                        required>
+
+                </div>
+
+
+                <div class="col-md-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success w-100">
+
+                        Create
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="table-responsive mt-4">
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for employee in employees %}
+
+        <tr>
+
+            <td>
+                {{ employee.emp_id }}
+            </td>
+
+            <td>
+                {{ employee.fullname }}
+            </td>
+
+            <td>
+                {{ employee.email }}
+            </td>
+
+            <td>
+                {{ employee.created_at }}
+            </td>
+
+            <td>
+                {{ employee.updated_at }}
+            </td>
+
+            <td>
+
+                <a
+                    href="{{ url_for(
+                        'edit_employee',
+                        emp_id=employee.emp_id
+                    ) }}"
+                    class="btn btn-warning btn-sm">
+
+                    Edit
+
+                </a>
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_employee',
+                        emp_id=employee.emp_id
+                    ) }}"
+                    class="d-inline">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm(
+                            'Delete this employee?'
+                        );">
+
+                        Delete
+
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

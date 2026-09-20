@@ -1,0 +1,30 @@
+Create a simple crud app using Flask
+Front end: HTML, CSS, Bootstrap 
+Database: MySQL (aiven cloud database-Already running)
+app name: rancher_handson_employee_app
+
+.env 
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=defaultdb
+
+Table:
+You  create a one route for create table and another route for CRUD operations on the employees table.
+employees
+columns: emp_id, fullname, email, password, created_at, updated_at
+
+Pages:
+Register, Login, Index
+
+Rule:
+Simple page is enough, HTML files ares should be inside templates folder, CSS files should be inside static folder.
+
+Main Goal : Deployment practice on AWS using Kubernetes in Rancher console.
+I want test with 5 replicas
+2 or 3  Instance 
+
+I already created EC2 instance and installed Docker 
+
+my dockerhub username is: ganesanja
