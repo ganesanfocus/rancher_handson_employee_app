@@ -1,0 +1,19 @@
+whoami
+
+icacls.exe "FirstDemoVirtualMachine_key.pem" /inheritance:r
+
+icacls.exe "FirstDemoVirtualMachine_key.pem" /remove "NT AUTHORITY\Authenticated Users"
+
+icacls.exe "FirstDemoVirtualMachine_key.pem" /remove "BUILTIN\Users"
+
+icacls.exe "FirstDemoVirtualMachine_key.pem" /grant:r "ganesanj\admin:(R)"
+
+icacls.exe "FirstDemoVirtualMachine_key.pem"
+
+ssh -i "FirstDemoVirtualMachine_key.pem" azureuser@172.173.152.94
+
+
+
+Note: Replace the Windows username, PEM filename, Linux username and IP address according to your VM.
+
+Run these commands from the directory containing your .pem file.
